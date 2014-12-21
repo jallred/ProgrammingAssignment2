@@ -2,12 +2,17 @@
 ## result in a global cache. If the inversion has already been
 ## computed, returne the cached result.
 
+## code was tested with:
+##  mat = matrix(data=c(1,2,3,4), nrow=2, ncol=2)
+##  mat2 = makeCacheMatrix(mat)
+##  mat3 = cacheSolve(mat2)
+
 ## create the cache entry to store the result of inverting the matrix
 makeCacheMatrix <- function(x) {
   im <- NULL ## the inverted matrix
   
   set <- function(y) {
-    x <<-y
+    x <<-y    # The original matrix
     im <<- NULL
   }
   
@@ -17,7 +22,7 @@ makeCacheMatrix <- function(x) {
   
   getinversematrix <- function () im
   
-  ## list of functions in this module
+  ## list of functions in this object
   list(set = set, 
        get = get, 
        setinversematrix = setinversematrix,
@@ -31,7 +36,7 @@ cacheSolve <- function(x) {
   ## Return a matrix that is the inverse of 'x'
   ## if we have already computed the inverse, return the cached result
 
-  ## matrix must be square. we're not checking this per the assignment
+  ## matrix must be square. we're not checking if this is the case per the assignment
   
   ## first, check to see if we have already computed the inverse of 
   ## this matrix. if so, return the inverted matrix from the cache
